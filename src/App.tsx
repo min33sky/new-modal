@@ -42,7 +42,7 @@ function App() {
           const target = e.target as HTMLDialogElement;
           if (target.nodeName === 'DIALOG') target.close();
         }}
-        className="text-md inset-0 block w-2/3 max-w-5xl translate-y-20 rounded-2xl p-0 opacity-0  transition-[opacity,transform] duration-300 backdrop:backdrop-blur-sm [&:not([open])]:pointer-events-none [&[open]]:translate-y-0 [&[open]]:opacity-100 "
+        className="text-md inset-0 block w-2/3 max-w-5xl translate-y-20 rounded-2xl p-0 opacity-0  transition-[opacity,transform] duration-300 backdrop:backdrop-blur-sm open:translate-y-0 open:opacity-100 [&:not([open])]:pointer-events-none "
       >
         <form method="dialog">
           <header className="relative rounded-t-2xl bg-white px-8 pt-6">
