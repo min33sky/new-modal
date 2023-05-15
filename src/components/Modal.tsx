@@ -1,13 +1,13 @@
-import React, { ForwardedRef, MutableRefObject } from 'react';
+import React from 'react';
 
 interface ModalProps {
-  dialogRef: MutableRefObject<HTMLDialogElement | null>;
+  closeModal: () => void;
 }
 
 const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
   return (
     <dialog
-      ref={props.dialogRef}
+      ref={ref}
       onSubmit={(e) => {
         const formData = new FormData(e.target as HTMLFormElement);
         console.log(formData.get('card-number'));
@@ -27,7 +27,7 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
           <h1 className="text-2xl font-bold">Change your payment method</h1>
           <button
             type="button"
-            onClick={() => props.dialogRef.current?.close()}
+            onClick={props.closeModal}
             className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-md bg-gray-100 p-3 text-xl"
           >
             <span className="sr-only">close</span> &times;

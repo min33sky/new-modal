@@ -11,12 +11,8 @@ interface ModalContextProps {
 const ModalContext = React.createContext<ModalContextProps>({
   dialogRef: { current: null },
   isVisible: false,
-  onClose() {
-    return null;
-  },
-  onOpen() {
-    return null;
-  },
+  onClose: () => null,
+  onOpen: () => null,
 });
 
 export default function ModalContextProvider({
@@ -29,7 +25,8 @@ export default function ModalContextProvider({
 
   const onCloseModal = useCallback(() => {
     setIsVisible(false);
-  }, []);
+    dialogRef.current?.close();
+  }, [dialogRef]);
 
   const onOpenModal = useCallback(() => {
     setIsVisible(true);
@@ -46,7 +43,7 @@ export default function ModalContextProvider({
       }}
     >
       {children}
-      <Modal dialogRef={dialogRef} />
+      <Modal ref={dialogRef} closeModal={onCloseModal} />
     </ModalContext.Provider>
   );
 }
