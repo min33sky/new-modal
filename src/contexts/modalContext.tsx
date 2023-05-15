@@ -1,18 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Modal from '../components/Modal';
 
 interface ModalContextProps {
-  dialogRef: React.MutableRefObject<HTMLDialogElement | null>;
   isVisible: boolean;
-  onClose: () => void;
-  onOpen: () => void;
+  onCloseModal: () => void;
+  onOpenModal: () => void;
 }
 
 const ModalContext = React.createContext<ModalContextProps>({
-  dialogRef: { current: null },
   isVisible: false,
-  onClose: () => null,
-  onOpen: () => null,
+  onCloseModal: () => null,
+  onOpenModal: () => null,
 });
 
 export default function ModalContextProvider({
@@ -21,7 +19,7 @@ export default function ModalContextProvider({
   children: React.ReactNode;
 }) {
   const [isVisible, setIsVisible] = useState(false);
-  const { dialogRef } = useModal();
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const onCloseModal = useCallback(() => {
     setIsVisible(false);
@@ -36,10 +34,9 @@ export default function ModalContextProvider({
   return (
     <ModalContext.Provider
       value={{
-        dialogRef: { current: null },
         isVisible,
-        onClose: onCloseModal,
-        onOpen: onOpenModal,
+        onCloseModal,
+        onOpenModal,
       }}
     >
       {children}
@@ -50,7 +47,7 @@ export default function ModalContextProvider({
 
 export function useModal() {
   const context = React.useContext(ModalContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useModal must be used within a ModalContextProvider');
   }
   return context;

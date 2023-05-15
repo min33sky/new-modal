@@ -1,11 +1,10 @@
 import Card from './components/Card';
-import ModalContextProvider from './contexts/modalContext';
 
 function App() {
   return (
-    <ModalContextProvider>
+    <main className="flex min-h-screen bg-violet-900">
       <Card />
-    </ModalContextProvider>
+    </main>
   );
 }
 

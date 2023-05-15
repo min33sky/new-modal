@@ -2,11 +2,11 @@ import { useModal } from '../contexts/modalContext';
 import { VisaIcon } from '../Visa';
 
 export default function Card() {
-  const { onOpen } = useModal();
+  const { onOpenModal: onOpen } = useModal();
 
   return (
     <div className="w-5xl mx-auto mt-24 max-w-[90%]">
-      <h1 className="text-3xl font-medium">Billing details</h1>
+      <h1 className="text-3xl font-medium text-violet-100">Billing details</h1>
 
       {/* ⬇️ Dark Component */}
       <div className="mt-4 flex flex-col rounded-2xl bg-gray-900 p-8 text-xl text-white">
