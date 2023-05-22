@@ -1,8 +1,8 @@
-import { useModal } from '../contexts/modalContext';
 import { VisaIcon } from '../Visa';
+import { useModal } from '../hooks/useModal';
 
 export default function Card() {
-  const { onOpenModal: onOpen } = useModal();
+  const { onOpenModal } = useModal();
 
   return (
     <div className="w-5xl mx-auto mt-24 max-w-[90%]">
@@ -19,7 +19,7 @@ export default function Card() {
           </div>
           <div>•••• •••• •••• 1234</div>
           <button
-            onClick={onOpen}
+            onClick={onOpenModal}
             className="ml-8 rounded-md bg-gray-600 px-4 py-2 text-sm text-white transition-colors hover:bg-gray-700"
           >
             Change payment method

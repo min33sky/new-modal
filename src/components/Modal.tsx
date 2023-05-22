@@ -1,10 +1,13 @@
 import React from 'react';
+import { useModal } from '../hooks/useModal';
 
 interface ModalProps {
-  closeModal: () => void;
+  content?: React.ReactNode; //? 모달 내용 바꿔치기할 때 사용하면 될 듯
 }
 
 const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
+  const { onCloseModal } = useModal();
+
   return (
     <dialog
       ref={ref}
@@ -27,7 +30,7 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
           <h1 className="text-2xl font-bold">Change your payment method</h1>
           <button
             type="button"
-            onClick={props.closeModal}
+            onClick={onCloseModal}
             className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-md bg-gray-100 p-3 text-xl"
           >
             <span className="sr-only">close</span> &times;
