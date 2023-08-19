@@ -5,7 +5,7 @@ interface ModalProps {
   content?: React.ReactNode; //? 모달 내용 바꿔치기할 때 사용하면 될 듯
 }
 
-const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
+const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((_props, ref) => {
   const { onCloseModal } = useModal();
 
   return (
@@ -17,9 +17,10 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
       }}
       onClose={(e) => {
         const target = e.target as HTMLDialogElement;
-        console.log(target.returnValue);
+        console.log('onCLose: ', target.returnValue);
       }}
       onClick={(e) => {
+        //? Backdrop 클릭 시 모달 닫기
         const target = e.target as HTMLDialogElement;
         if (target.nodeName === 'DIALOG') target.close();
       }}

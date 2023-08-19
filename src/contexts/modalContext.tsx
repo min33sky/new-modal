@@ -34,7 +34,7 @@ export default function ModalContextProvider({
   return (
     <ModalContext.Provider
       value={{
-        isOpen: isOpen,
+        isOpen,
         onCloseModal,
         onOpenModal,
       }}
